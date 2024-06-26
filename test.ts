@@ -8,13 +8,15 @@ let rl = readline.createInterface(
 
 rl.setPrompt(`Gib die Datei an: `);
 rl.prompt()
-let filePath = ""
+let filePath = "foo.txt"
 rl.on('line', (path) => {
-    console.log(`Age received by the user: ${path}`);
+    console.log(`provide an absolut path 2 file: ${path}`);
     filePath = path;
+    let buffer = fs.readFileSync(filePath,'utf8');
+    console.log(buffer)
     rl.close();
 });
-let buffer = fs.readFileSync('foo.txt','utf8');
 
-console.log(buffer)
+
+
 
