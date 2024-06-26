@@ -3,11 +3,18 @@ const readline = require('readline')
 //import * as f from 'fs' ;
 //import * as readline from 'readline';
 /**/
-let rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+let rl = readline.createInterface(
+    process.stdin, process.stdout);
+
+rl.setPrompt(`Gib die Datei an: `);
+rl.prompt()
+let filePath = ""
+rl.on('line', (path) => {
+    console.log(`Age received by the user: ${path}`);
+    filePath = path;
+    rl.close();
 });
-console.log(rl)
 let buffer = fs.readFileSync('foo.txt','utf8');
 
 console.log(buffer)
+
