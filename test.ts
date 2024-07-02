@@ -3,16 +3,49 @@ const readline = require('readline')
 //import * as f from 'fs' ;
 //import * as readline from 'readline';
 /**/
-let rl = readline.createInterface(
-    process.stdin, process.stdout);
 
-let filePath = "foo.txt"
-rl.question('Gib die Datei an: ', function(path:string) {
-    console.log(`provide an absolut path 2 file: ${path}`);
-    filePath = path;
+
+// function 1: einlesen der daten 
+function readData(filePath:string):string[]{
     let buffer = fs.readFileSync(filePath,'utf8');
-    console.log(buffer)
-    rl.close();
-});
+    return csv.parse(buffer, ",")
+}
+
+//function 2: darstellen der daten
+
+function showData(lines:string[]){
+    lines.forEach(line=>{
+        let dataSet = line.split(',')
+        dataSet.forEach(col=>{
+            print(col + "|")
+        })
+        println('')
+    })
+}
+
+function showDataAsHtml(lines:string[]){
+    println('<table>')
+    lines.forEach(line=>{
+        println('<tr>')
+        let dataSet = line.split(',')
+        dataSet.forEach(col=>{
+            print('<td>'+ col + '</d>')
+        })
+        println('</tr>')
+    })
+    println('</table>')
+}
+
+// function 3: verbinde beide funtionen mit einander
+
+function main(args[]){
+    let list = readData(args[0])
+    if (args[2]=='html'){
+        showDataAsHtml(list)
+    }else{
+        showData(list)
+    }
+}
 
 
+main()
