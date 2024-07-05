@@ -48,4 +48,4 @@ function main(args[]){
 }
 
 
-main()
+main()()
