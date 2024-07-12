@@ -1,7 +1,13 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import {printHtml} from  './html_doc'
 
+
+/**
+ * erweitere das Programm um einen zweiten Parameter für den Ausgabetyp: text oder html
+ * - der Parameter text soll die CSV Datei als Text-Tabelle ausgeben (so wie es bereits umgesetzt ist)
+ * - der Paramter html soll die CSV Datei als HTML Tabelle ausgeben.
+ *
+ */ 
 // Путь к файлу
 function readParameters():string{
     return process.argv.slice(2)[0]
@@ -50,8 +56,6 @@ function printTable(formattedRows: string[]): void {
   formattedRows.forEach(row => printLine(row))
 }
 
-// какая строка самая шрокая
-
 
 // Основной процесс
 readCSVFile(readParameters(), (data) => {
@@ -60,8 +64,4 @@ readCSVFile(readParameters(), (data) => {
    const formattedRows = formatRow(rows, columnWidths)
    printTable(formattedRows)
 } );
-
-printHtml()
-
-
 
