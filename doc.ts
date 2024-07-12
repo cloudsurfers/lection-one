@@ -1,8 +1,8 @@
 import * as fs from 'fs'
 import * as path from 'path'
+import {printHtml} from  './html_doc'
 
 // Путь к файлу
-const csvFilePath = path.join(__dirname, 'Textdocument.csv')
 function readParameters():string{
     return process.argv.slice(2)[0]
 }
@@ -41,10 +41,13 @@ function formatRow(rows: string[][], columnWidths: number[]): string[] {
   })
 }
 
-// Функция для вывода строк CSV в консоль в виде таблицы
+function printLine(row:any){
+	console.log(row)
+}
 
+// Функция для вывода строк CSV в консоль в виде таблицы
 function printTable(formattedRows: string[]): void {
-  formattedRows.forEach(row => console.log(row))
+  formattedRows.forEach(row => printLine(row))
 }
 
 // какая строка самая шрокая
@@ -55,5 +58,10 @@ readCSVFile(readParameters(), (data) => {
   const rows = processCSVData(data)
    const columnWidths = getMaxColumnWidths(rows)
    const formattedRows = formatRow(rows, columnWidths)
-   console.log(printTable(formattedRows))
+   printTable(formattedRows)
 } );
+
+printHtml()
+
+
+
