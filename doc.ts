@@ -3,6 +3,9 @@ import * as path from 'path'
 
 // Путь к файлу
 const csvFilePath = path.join(__dirname, 'Textdocument.csv')
+function readParameters():string{
+    return process.argv.slice(2)[0]
+}
 
 // чаем файл
 function readCSVFile(filePath: string, callback: (data: string) => void): void {
@@ -47,12 +50,10 @@ function printTable(formattedRows: string[]): void {
 // какая строка самая шрокая
 
 
-
 // Основной процесс
-readCSVFile(csvFilePath, (data) => {
+readCSVFile(readParameters(), (data) => {
   const rows = processCSVData(data)
-  const columnWidths = getMaxColumnWidths(rows)
-  const formattedRows = formatRow(rows, columnWidths)
-  printTable(formattedRows)
-  console.log('CSV file successfully processed')
-});
+   const columnWidths = getMaxColumnWidths(rows)
+   const formattedRows = formatRow(rows, columnWidths)
+   console.log(printTable(formattedRows))
+} );
