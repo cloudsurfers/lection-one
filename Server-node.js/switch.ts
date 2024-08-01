@@ -1,7 +1,7 @@
 let num: any = "mein string"
 
 switch (num) {
-    
+
     case 10:
         console.log("richtig")
         break
@@ -12,6 +12,10 @@ switch (num) {
 
     case "mein string":
         console.log("Hallo Welt")
+        break
+
+    case "mein 2 string":
+        console.log("dfdgd")    
         break
 
     default: {
