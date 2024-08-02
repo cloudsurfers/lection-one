@@ -1,7 +1,0 @@
-id | name     | vorname     | email
-----------------------------------------------
-1  | testname | testvorname | test@vorname
-----------------------------------------------
-2  | test2    | vornme2     |  
-----------------------------------------------
-3  | abc      | defg        |  abc@test.domain  
