@@ -1,8 +1,9 @@
 // Определение класса Auto
-class Auto {
+class AutoV2 {
     private Marke: string = ""
     private Baujahr: string = ""
     private Farbe: string = ""
+    
     constructor(Marke, Baujahr, Farbe) { // Создаем клас авто, добавляем характеристики которые будут сохранятся
         this.Marke = Marke;
         this.Baujahr = Baujahr;
