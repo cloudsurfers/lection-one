@@ -1,50 +1,98 @@
 // Определение класса Auto
 class Auto {
-    private Marke: string = ""
-    private Baujahr: string = ""
-    private Farbe: string = ""
+    Marke  = ""
+    Baujahr  = ""
+    Farbe = ""
     constructor(Marke, Baujahr, Farbe) { // Создаем клас авто, добавляем характеристики которые будут сохранятся
         this.Marke = Marke;
         this.Baujahr = Baujahr;
         this.Farbe = Farbe;
     }
 
-    changeColor(newColor: string ){
+    changeColor(newColor){
         this.Farbe = newColor
     }
 
-    public getFarbe(): string{
+    getFarbe(){
         return this.Farbe
     }
 }
+
+class App {
+    listOfCars  = [];
+
+    addAutoToList(auto) { //принимает значения в список
+        const autoList = document.querySelector("#liste > ul") // принимает по ид и добавляет в лист
+        var index = this.listOfCars.push(auto)
+        const li = document.createElement("li") // создает элемент li
+        reranderElement(li, auto, index)
+
+         
+        autoList.appendChild(li) //добавляет li в конец списка autoList.
+       
+    }
+
+}
+var app = new App()
 //
 
-function addAutoToList(auto) { //принимает значения в список
-    const autoList = document.getElementById("autoList") // принимает по ид и добавляет в лист
+function reranderElement(element, auto, index){
+    var disp =  element.style.display;
+    element.style.display = "none";
+    element["car_index"] = index
+    element.textContent = `Marke: ${auto.Marke}, Baujahr: ${auto.Baujahr}, Farbe: ${auto.Farbe}` 
+    var button = document.createElement("button")
+    button["car_index"] = index
+    button.textContent="edit"
+    element.appendChild(button)
 
-    const li = document.createElement("li") // создает элемент li
-    li.textContent = `Marke: ${auto.Marke}, Baujahr: ${auto.Baujahr}, Farbe: ${auto.Farbe}` // устанавливает его в строку(форматируем)
-
-    autoList.appendChild(li) //добавляет li в конец списка autoList.
+    button.addEventListener("click", function(event){
+         var car = app.listOfCars[event.target.car_index]
+         document.getElementById("brand").value = car.Marke
+         document.getElementById("releaseYear").value = car.Baujahr
+         document.getElementById("color").value = car.Farbe
+         document.getElementById("saveButton")["car_index"] = event.target.car_index
+    })
+    var delXutton = document.createElement("button")
+    delXutton["car_index"] = index
+    delXutton.textContent="löschen"
+    element.appendChild(delXutton)
+    delXutton.addEventListener("click", function(event){
+        app.listOfCars.splice(event.target.car_index-1, 1)
+        console.log(app.listOfCars)
+    })
+    element.style.display = disp;
 }
 
-document.getElementById("saveButton").addEventListener("click", function() { // находим кнопку и даем ей такие указания
+document.getElementById("saveButton").addEventListener("click", function(evnt) { // находим кнопку и даем ей такие указания
+    if(evnt.target.car_index==undefined){
+        const marke = document.getElementById("brand").value
+        const baujahr = document.getElementById("releaseYear").value
+        const farbe = document.getElementById("color").value
 
-    const marke = document.getElementById("marke").value
-    const baujahr = document.getElementById("baujahr").value
-    const farbe = document.getElementById("farbe").value
+        const auto = new Auto(marke, baujahr, farbe) // оздает новый объект Auto, передавая в него значения marke, baujahr и farbe.
 
-    const auto = new Auto(marke, baujahr, farbe) // оздает новый объект Auto, передавая в него значения marke, baujahr и farbe.
-
-    addAutoToList(auto)
-
-    document.getElementById("autoForm").reset()
+        app.addAutoToList(auto)
+    }else{
+        car = app.listOfCars[evnt.target.car_index-1]
+        car.Marke =  document.getElementById("brand").value
+        car.Baujahr = document.getElementById("releaseYear").value
+        car.Farbe = document.getElementById("color").value
+        var element
+        document.querySelector("#liste").querySelectorAll("li").forEach(li => {
+            if (li.car_index===evnt.target.car_index) {
+                console.log("element found "+li)
+                element = li
+                return;
+            }
+            console.log(li.car_index)
+        })
+        reranderElement(element, car, evnt.target.car_index)
+        evnt.target.car_index = undefined
+        
+    }
+    //document.getElementById("formular").reset()
 })
 
-document.getElementById("changeColor").addEventListener("click", function(event) {
-    console.log("changing color")
-    const auto = new Auto("fiat", "2088", "black");
-    auto.changeColor("silver")
 
-    console.log(`${auto.getFarbe()}`)
-})
+
