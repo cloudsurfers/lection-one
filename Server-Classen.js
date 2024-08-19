@@ -40,7 +40,7 @@ function reranderElement(element, auto, index){
     var disp =  element.style.display;
     element.style.display = "none";
     element["car_index"] = index
-    element.textContent = `Marke: ${auto.Marke}, Baujahr: ${auto.Baujahr}, Farbe: ${auto.Farbe}` 
+    element.textContent = `${index} Marke: ${auto.Marke}, Baujahr: ${auto.Baujahr}, Farbe: ${auto.Farbe}` 
     var button = document.createElement("button")
     button["car_index"] = index
     button.textContent="edit"
