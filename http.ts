@@ -1,6 +1,4 @@
-import {*} as http from 'http'
-const http =  require('http')
-import * from "./Auto.ts"
+import * as http from 'http'
 
 const requestListener = function (req:any, res:any) {
     res.writeHead(200);
@@ -9,6 +7,8 @@ const requestListener = function (req:any, res:any) {
 
 
 const server = http.createServer(requestListener)
-server.listen(4000, "localhost", () => {
-    console.log(`Server is running on http://localhost:4000`);
+server.listen(4200, "localhost", () => {
+    console.log(`Server is running on http://localhost:4200`);
 });
+
+server.addListener("/test", requestListener)
