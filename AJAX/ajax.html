@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Alignment</title>
+    <style>
+        body {
+            display: flex;
+            height: 50vh;
+            margin: 30px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        input, button {
+            margin: 7px 0;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            counter-reset: item-counter; 
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            counter-increment: item-counter; 
+        }
+
+        li::before {
+            content: counter(item-counter) ". "; 
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        li span {
+            display: inline-block;
+            min-width: 80px; 
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="change">
+        <form id="autoForm">
+            <input type="text" id="marke" placeholder="Marke">
+            <input type="number" id="baujahr" placeholder="Baujahr">
+            <input type="text" id="farbe" placeholder="Farbe">
+            <button type="button" id="saveButton">Save</button>
+           
+            <button type="button" onclick="loadDoc()">Change Seite</button>
+            
+            <script>
+                function loadDoc() {
+                  const xhttp = new XMLHttpRequest();
+                  xhttp.onload = function() {
+                    document.getElementById("change").innerHTML =
+                    this.responseText;
+                  }
+                  xhttp.open("GET", "ajax_info.txt");
+                  xhttp.send();
+                }
+                </script>
+        </form>
+        <ul id="autoList"></ul>
+        <script src="Ajax.js"></script>        
+    </div>
+</body>
+</html>

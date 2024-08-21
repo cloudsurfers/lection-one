@@ -1,5 +1,5 @@
 // Определение класса Auto
-class Auto {
+class Aut {
     private Marke: string = ""
     private Baujahr: string = ""
     private Farbe: string = ""
