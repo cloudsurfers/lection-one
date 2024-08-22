@@ -54,3 +54,15 @@ function deleteAuto(button) {
     li.remove()
 }
 ///
+
+
+
+
+function callurl(){
+    console.log("calling an url")
+    // aufruf eines backends statt finden.
+}
+
+document.getElementById("loadButton").addEventListener("click", function(e) {
+  callurl()  
+})

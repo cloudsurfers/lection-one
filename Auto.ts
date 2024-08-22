@@ -1,50 +1,43 @@
-// Определение класса Auto
-class Aut {
-    private Marke: string = ""
-    private Baujahr: string = ""
-    private Farbe: string = ""
-    constructor(Marke, Baujahr, Farbe) { // Создаем клас авто, добавляем характеристики которые будут сохранятся
-        this.Marke = Marke;
-        this.Baujahr = Baujahr;
-        this.Farbe = Farbe;
-    }
+// <<<<<<< HEAD
+// // Определение класса Auto
+// class Aut {
+//     private Marke: string = ""
+//     private Baujahr: string = ""
+//     private Farbe: string = ""
+//     constructor(Marke, Baujahr, Farbe) { // Создаем клас авто, добавляем характеристики которые будут сохранятся
+//         this.Marke = Marke;
+//         this.Baujahr = Baujahr;
+//         this.Farbe = Farbe;
+//     }
+// =======
+// class Auto{
+//     public brand: string = "";
+//     public releaseYear: string = "";
+//     public color: string = "";
+// >>>>>>> 045af8093b5f15e6b20b4ea753a10231f214bb2e
 
-    changeColor(newColor: string ){
-        this.Farbe = newColor
-    }
+//     constructor(brand:string, releaseYear:string, color:string){
+//         this.brand = brand; 
+//         this.releaseYear = releaseYear;
+//         this.color = color;
+//     }
+// }
 
-    public getFarbe(): string{
-        return this.Farbe
-    }
-}
-//
+// let listOfCar: Auto[] = [];
+// let  button =  document.querySelector("button")
+// button.addEventListener('click', (event: MouseEvent) => {
+//     // TypeScript knows `click` event's type is MouseEvent.
+//     console.log()
+//     let car = new Auto(document.querySelector("#brand")['value'], document.querySelector("#releaseYear")['value'], document.querySelector("#color")['value']);
+//     listOfCar.push(car);
+//     append2list(car)
+//   });
 
-function addAutoToList(auto) { //принимает значения в список
-    const autoList = document.getElementById("autoList") // принимает по ид и добавляет в лист
 
-    const li = document.createElement("li") // создает элемент li
-    li.textContent = `Marke: ${auto.Marke}, Baujahr: ${auto.Baujahr}, Farbe: ${auto.Farbe}` // устанавливает его в строку(форматируем)
-
-    autoList.appendChild(li) //добавляет li в конец списка autoList.
-}
-
-document.getElementById("saveButton").addEventListener("click", function() { // находим кнопку и даем ей такие указания
-
-    const marke = document.getElementById("marke").value
-    const baujahr = document.getElementById("baujahr").value
-    const farbe = document.getElementById("farbe").value
-
-    const auto = new Auto(marke, baujahr, farbe) // оздает новый объект Auto, передавая в него значения marke, baujahr и farbe.
-
-    addAutoToList(auto)
-
-    document.getElementById("autoForm").reset()
-})
-
-document.getElementById("changeColor").addEventListener("click", function(event) {
-    console.log("changing color")
-    const auto = new Auto("fiat", "2088", "black");
-    auto.changeColor("silver")
-
-    console.log(`${auto.getFarbe()}`)
-})
+// function append2list(auto:Auto): void{
+//     let list = document.querySelector("#liste>ul") as HTMLUListElement
+//     let li = document.createElement("li")
+//     list.append(li)
+//     li.textContent = auto.brand+" "+auto.releaseYear+" "+auto.color
+// }
+    
