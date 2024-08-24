@@ -53,10 +53,6 @@ function deleteAuto(button) {
     const li = button.parentElement
     li.remove()
 }
-///
-
-
-
 
 function callurl(){
     console.log("calling an url")
