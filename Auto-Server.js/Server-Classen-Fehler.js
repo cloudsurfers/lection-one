@@ -1,64 +1,72 @@
-class Auto {
-    constructor(Marke, Baujahr, Farbe) {
+var Auto = /** @class */ (function () {
+    function Auto(Marke, Baujahr, Farbe) {
         this.Marke = Marke;
         this.Baujahr = Baujahr;
         this.Farbe = Farbe;
     }
-}
-
-let editingLi = null;
-
-document.getElementById("saveButton").addEventListener("click", function() {
-    const marke = document.getElementById("marke").value;
-    const baujahr = document.getElementById("baujahr").value;
-    const farbe = document.getElementById("farbe").value;
-
-    const liContent = `
-        <span>Marke: <span style="font-weight: bold;">${marke}</span></span>, 
-        <span>Baujahr: <span style="font-weight: bold;">${baujahr}</span></span>, 
-        <span>Farbe: <span style="font-weight: bold;">${farbe}</span></span>
-        <button onclick="editAuto(this)">Edit</button>
-        <button onclick="deleteAuto(this)">Delete</button> 
-    `
-
+    Auto.prototype.getMarke = function () {
+        return this.Marke;
+    };
+    Auto.prototype.getBaujahr = function () {
+        return this.Baujahr;
+    };
+    Auto.prototype.getFarbe = function () {
+        return this.Farbe;
+    };
+    return Auto;
+}());
+var editingLi = null;
+document.getElementById("saveButton").addEventListener("click", function () {
+    var markeElement = document.getElementById("marke");
+    var baujahrElement = document.getElementById("baujahr");
+    var farbeElement = document.getElementById("farbe");
+    var marke = markeElement ? markeElement.value : "";
+    var baujahr = baujahrElement ? baujahrElement.value : "";
+    var farbe = farbeElement ? farbeElement.value : "";
+    var liContent = "\n        <span>Marke: <span style=\"font-weight: bold;\">".concat(marke, "</span></span>, \n        <span>Baujahr: <span style=\"font-weight: bold;\">").concat(baujahr, "</span></span>, \n        <span>Farbe: <span style=\"font-weight: bold;\">").concat(farbe, "</span></span>\n        <button onclick=\"editAuto(this)\">Edit</button>\n        <button onclick=\"deleteAuto(this)\">Delete</button> \n    ");
     if (editingLi) {
         editingLi.innerHTML = liContent;
         editingLi = null;
-    } else {
-        const autoList = document.getElementById("autoList");
-        const li = document.createElement("li");
+    }
+    else {
+        var autoList = document.getElementById("autoList");
+        var li = document.createElement("li");
         li.innerHTML = liContent;
         autoList.appendChild(li);
     }
-
-    document.getElementById("autoForm").reset();
+    var formElement = document.getElementById("autofotm");
+    if (formElement) {
+        formElement.reset();
+    }
 });
-
 function editAuto(button) {
-    const li = button.parentElement;
-    const spans = li.querySelectorAll('span > span');
-    
-    const marke = spans[0].textContent;
-    const baujahr = spans[1].textContent;
-    const farbe = spans[2].textContent;
-
-    document.getElementById("marke").value = marke;
-    document.getElementById("baujahr").value = baujahr;
-    document.getElementById("farbe").value = farbe;
-
+    var li = button.parentElement;
+    var spans = li.querySelectorAll('span > span');
+    var marke = spans[0].textContent;
+    var baujahr = spans[1].textContent;
+    var farbe = spans[2].textContent;
+    var markeElement = document.getElementById("marke");
+    if (markeElement) {
+        markeElement.value = marke;
+    }
+    var baujahrElement = document.getElementById("baujahr");
+    if (baujahrElement) {
+        baujahrElement.value = baujahr;
+    }
+    var farbeElement = document.getElementById("farbe");
+    if (farbeElement) {
+        farbeElement.value = farbe;
+    }
     editingLi = li;
 }
-
 function deleteAuto(button) {
-    const li = button.parentElement
-    li.remove()
+    var li = button.parentElement;
+    li.remove();
 }
-
-function callurl(){
-    console.log("calling an url")
+function callurl() {
+    console.log("calling an url");
     // aufruf eines backends statt finden.
 }
-
-document.getElementById("loadButton").addEventListener("click", function(e) {
-  callurl()  
-})
+document.getElementById("loadButton").addEventListener("click", function (e) {
+    callurl();
+});
