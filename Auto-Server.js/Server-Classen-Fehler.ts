@@ -89,6 +89,15 @@ function deleteAuto(button) {
 function callurl(){
     console.log("calling an url")
     // aufruf eines backends statt finden.
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "test.json")
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           // Typical action to be performed when the document is ready:
+           console.log(xhr.responseText);
+        }
+    };
+    xhr.send()
 }
 
 document.getElementById("loadButton").addEventListener("click", function(e) {
