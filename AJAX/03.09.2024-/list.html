@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список автомобилей</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f4f4f4;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список автомобилей</h1>
+    <ul id="carList"></ul>
+
+    <script>
+        // Извлекаем данные из localStorage
+        var autos = JSON.parse(localStorage.getItem('autos')) || [];
+        var carList = document.getElementById("carList");
+
+        // Отображаем каждый автомобиль
+        autos.forEach(function(auto) {
+            var li = document.createElement("li");
+            li.textContent = `Marke: ${auto.Marke}, Baujahr: ${auto.Baujahr}, Farbe: ${auto.Farbe}`;
+            carList.appendChild(li);
+        });
+    </script>
+    <div>
+        <style>
+            input, button {
+            margin: 7px 0;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+            button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        </style>
+    </div>
+</body>
+</html>
