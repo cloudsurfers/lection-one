@@ -20,43 +20,113 @@
             margin-bottom: 10px;
             padding: 10px;
             border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-    </style>
-</head>
-<body>
-    <h1>Список автомобилей</h1>
-    <ul id="carList"></ul>
 
-    <script>
-        // Извлекаем данные из localStorage
-        var autos = JSON.parse(localStorage.getItem('autos')) || [];
-        var carList = document.getElementById("carList");
-
-        // Отображаем каждый автомобиль
-        autos.forEach(function(auto) {
-            var li = document.createElement("li");
-            li.textContent = `Marke: ${auto.Marke}, Baujahr: ${auto.Baujahr}, Farbe: ${auto.Farbe}`;
-            carList.appendChild(li);
-        });
-    </script>
-    <div>
-        <style>
-            input, button {
-            margin: 7px 0;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
+        li.checked {
+            text-decoration: line-through;
+            color: #ccc;
         }
-            button {
+
+        button {
             background-color: #007bff;
             color: white;
             border: none;
             cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 3px;
         }
 
         button:hover {
             background-color: #0056b3;
         }
+
+        .delete-all {
+            margin-top: 30px;
+            background-color: #dc3545;
+        }
+
+        .delete-all:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Auto list</h1>
+    <ul id="carList"></ul>
+
+    <button class="delete-all" onclick="deleteAll()">Alles Löschen</button>
+
+    <script>
+        // Extrahieren Daten aus LocalStorage
+        var autos = JSON.parse(localStorage.getItem('autos')) || [];
+        var carList = document.getElementById("carList");
+
+        autos.forEach(function(auto, index) {
+            var li = document.createElement("li");
+
+            // Checkbox
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.addEventListener("change", function() {
+                if (checkbox.checked) {
+                    li.classList.add("checked"); // -----
+
+                    // Css
+                    setTimeout(function() {
+                        deleteAuto(index);
+                        li.remove(); // Delete
+                    }, 1000);
+                }
+            });
+
+            li.innerHTML = `Marke: ${auto.Marke}, Baujahr: ${auto.Baujahr}, Farbe: ${auto.Farbe}`;
+            li.prepend(checkbox); // Checkbox vom text/List
+
+            // Delete button
+            var deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Löschen";
+            deleteBtn.onclick = function() {
+                deleteAuto(index);
+                li.remove(); 
+            };
+
+            li.appendChild(deleteBtn);
+            carList.appendChild(li);
+        });
+
+        // Alle Elemente löschen
+        function deleteAll() {
+            localStorage.removeItem('autos');
+            carList.innerHTML = '';
+        }
+
+        // Ein bestimmtes Element löschen
+        function deleteAuto(index) {
+            autos.splice(index, 1);
+            localStorage.setItem('autos', JSON.stringify(autos));
+        }
+
+    </script>
+    <div>
+        <style>
+            input, button {
+                margin: 7px 0;
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+            }
+            button {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
         </style>
     </div>
 </body>
