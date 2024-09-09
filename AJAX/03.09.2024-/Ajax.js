@@ -13,7 +13,7 @@ var editingIndex = null;
 
 function loadAutos() {
     try {
-        var autos = JSON.parse(localStorage.getItem('autos')) || [];
+        var autos = JSON.parse(localStorage.getItem('autos')) || []; // daswegen localstorage sync ist
         return autos;
     } catch (e) {
         console.error("Fehler beim Speichern Daten aus localStorage:", e);
