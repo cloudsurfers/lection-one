@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список автомобилей</title>
+    <title>Auto Liste</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,6 +58,7 @@
     <ul id="carList"></ul>
 
     <button class="delete-all" onclick="deleteAll()">Alles Löschen</button>
+    <button id="downloadCsvBtn">CSV File herunterladen </button>
 
     <script>
         // Extrahieren Daten aus LocalStorage
@@ -128,6 +129,32 @@
                 background-color: #0056b3;
             }
         </style>
+    </div>
+
+    <div>
+        <script>
+            // Liste herunterladen
+            function listToCSV() {
+                let csvContent = "data:text/csv;charset=utf-8,Marke,Baujahr,Farbe\r\n"
+
+                autos.forEach(auto => {
+                    let row = `${auto.Marke},${auto.Baujahr},${auto.Farbe}`
+                    csvContent += row + "\r\n"
+                })
+
+                return encodeURI(csvContent)
+            }
+
+            document.getElementById('downloadCsvBtn').addEventListener('click', function() {
+                const csvData = listToCSV()
+                const link = document.createElement('a')
+                link.setAttribute('href', csvData)
+                link.setAttribute('download', 'autos.csv')
+                document.body.appendChild(link)
+                link.click()
+                document.body.removeChild(link)
+            })
+        </script>
     </div>
 </body>
 </html>
