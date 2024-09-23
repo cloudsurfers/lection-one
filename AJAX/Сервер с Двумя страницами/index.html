@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Liste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        input, button {
+            margin: 7px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        input {
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        input::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .delete-all {
+            margin-top: 30px;
+            background-color: #dc3545;
+        }
+
+        .delete-all:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Auto Liste</h1>
+
+    <form id="autoForm">
+        <input type="text" id="marke" placeholder="Marke">
+        <input type="number" id="baujahr" placeholder="Baujahr">
+        <input type="text" id="farbe" placeholder="Farbe">
+        <input type="text" id="transmission" placeholder="Transmission">
+        <button type="button" id="saveButton">Speichern</button>
+        <button type="button" id="resetButton">Reinigen</button>
+    </form>
+
+    <table id="autoTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marke</th>
+                <th>Baujahr</th>
+                <th>Farbe</th>
+                <th>Transmission</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button class="delete-all" id="deleteAllButton" onclick="deleteAllCars()">Lösche alle Autos</button>
+    <button id="downloadCsvBtn">CSV File herunterladen</button>
+    <button type="button" onclick="window.location.href='list.html'">Liste zeigen</button>
+    
+    <script src="script.js"></script>
+</body>
+</html>

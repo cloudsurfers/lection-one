@@ -7,65 +7,71 @@
     <style>
         
         body {
-            display: flex;
-            height: 50vh;
-            margin: 30px;
-        }
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+}
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid #ccc;
-            padding: 30px;
-            border-radius: 10px;
-        }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px; 
+    background-color: #fff; 
+}
 
-        input, button {
-            margin: 7px 0;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-        }
+input, button {
+    margin: 7px 0;
+    width: 100%; 
+    padding: 10px;
+    font-size: 17px;
+}
 
-        ul {
-            list-style: none;
-            padding: 0;
-            width: 100%;
-            counter-reset: item-counter; 
-        }
+ul {
+    list-style: none;
+    padding: 0;
+    width: 100%; 
+    counter-reset: item-counter;
+}
 
-        li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f9f9f9;
-            margin-bottom: 5px;
-            counter-increment: item-counter; 
-        }
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    counter-increment: item-counter;
+}
 
-        li::before {
-            content: counter(item-counter) ". "; 
-            font-weight: bold;
-            margin-right: 5px;
-        }
+li::before {
+    content: counter(item-counter) ". ";
+    font-weight: bold;
+    margin-right: 5px;
+}
 
-        li span {
-            display: inline-block;
-            min-width: 80px; 
-        }
+li span {
+    display: inline-block;
+    min-width: 80px;
+}
 
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 
-        button:hover {
-            background-color: #0056b3;
-        }
+button:hover {
+    background-color: #0056b3;
+}
+
     </style>
 </head>
 <body>
