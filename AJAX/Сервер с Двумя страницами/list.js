@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById('deleteAllButton').addEventListener('click', deleteCars);
     document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
+    document.getElementById('zurErsteSeite').addEventListener('click', goBack)
 });
 
 function deleteCars() {
@@ -61,4 +62,8 @@ function downloadCSV() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+function goBack() {
+    window.history.back()
 }

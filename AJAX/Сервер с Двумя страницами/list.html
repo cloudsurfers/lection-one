@@ -9,11 +9,18 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
         }
 
         ul {
             list-style-type: none;
             padding: 0;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         li {
@@ -24,6 +31,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 100%;
+            word-wrap: break-word;
         }
 
         li.checked {
@@ -38,6 +47,7 @@
             cursor: pointer;
             padding: 5px 10px;
             border-radius: 3px;
+            margin: 5px;
         }
 
         button:hover {
@@ -52,6 +62,16 @@
         .delete-all:hover {
             background-color: #c82333;
         }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +79,7 @@
     <ul id="carList"></ul>
     <button class="delete-all" id="deleteAllButton" onclick="deleteCars()">Lösche alle Autos</button>
     <button id="downloadCsvBtn">CSV File herunterladen</button>
-    <a href="index.html">zurück zu Maske</a>
+    <!-- <a href="index.html">zurück zu Maske</a> -->
+    <button href="index.html" id="zurErsteSeite">zurück zu Maske</button>
 </body>
 </html>
