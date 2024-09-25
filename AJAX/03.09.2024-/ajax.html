@@ -5,73 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Alignment</title>
     <style>
-        
         body {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
-    margin: 0; 
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    padding: 30px;
-    border-radius: 10px;
-    width: 300px; 
-    background-color: #fff; 
-}
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            background-color: #fff;
+        }
 
-input, button {
-    margin: 7px 0;
-    width: 100%; 
-    padding: 10px;
-    font-size: 17px;
-}
+        input, button {
+            margin: 7px 0;
+            width: 100%;
+            padding: 10px;
+            font-size: 17px;
+            box-sizing: border-box;
+        }
 
-ul {
-    list-style: none;
-    padding: 0;
-    width: 100%; 
-    counter-reset: item-counter;
-}
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%; 
+            margin: 0;
+            counter-reset: item-counter;
+        }
 
-li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #f9f9f9;
-    margin-bottom: 5px;
-    counter-increment: item-counter;
-}
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px; 
+            background-color: #f9f9f9;
+            margin-bottom: 5px; 
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            gap: 8px; 
+            flex-wrap: wrap;
+        }
 
-li::before {
-    content: counter(item-counter) ". ";
-    font-weight: bold;
-    margin-right: 5px;
-}
+        li::before {
+            content: counter(item-counter) ". ";
+            font-weight: bold;
+            margin-right: 5px; 
+        }
 
-li span {
-    display: inline-block;
-    min-width: 80px;
-}
+        li span {
+            display: inline-block;
+            word-wrap: break-word;
+            flex-grow: 1;
+            min-width: 0;
+        }
 
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+        li div {
+            display: flex;
+            gap: 8px; 
+            flex-shrink: 0;
+        }
 
-button:hover {
-    background-color: #0056b3;
-}
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px; 
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
 
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -84,8 +100,7 @@ button:hover {
             <button type="button" onclick="window.location.href='list.html'">Show List</button>
         </form>
         <ul id="autoList"></ul>
-        <script src="Ajax.js"></script>        
+        <script src="Ajax.js"></script>
     </div>
 </body>
 </html>
-

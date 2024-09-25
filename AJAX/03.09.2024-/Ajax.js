@@ -39,7 +39,6 @@ document.getElementById("saveButton").addEventListener("click", function () {
     var autos = loadAutos();
 
     if (editingIndex !== null) {
-        // Редактирование существующего авто
         autos[editingIndex] = auto;
         editingIndex = null;
     } else {
@@ -54,18 +53,25 @@ document.getElementById("saveButton").addEventListener("click", function () {
 function renderAutoList() {
     var autos = loadAutos();
     var carList = document.getElementById("autoList");
-    carList.innerHTML = '';  // Clean List
+    carList.innerHTML = '';  
 
     autos.forEach((auto, index) => {
         var li = document.createElement("li");
-        li.dataset.index = index;  // Speichern Index umzu redaktieren
+        li.dataset.index = index;  
+
         li.innerHTML = `
-            <span>Marke: <span style="font-weight: bold;">${auto.Marke}</span></span>, 
-            <span>Baujahr: <span style="font-weight: bold;">${auto.Baujahr}</span></span>, 
-            <span>Farbe: <span style="font-weight: bold;">${auto.Farbe}</span></span>
-            <button onclick="editAuto(${index})">Edit</button>
-            <button onclick="deleteAuto(${index})">Delete</button>
+            <span><strong>${auto.Marke}</strong></span>, 
+            <span><strong>${auto.Baujahr}</strong></span>, 
+            <span><strong>${auto.Farbe}</strong></span>
+            <div>
+                <button onclick="editAuto(${index})">Edit</button>
+                <button onclick="deleteAuto(${index})">Delete</button>
+            </div>
         `;
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+
         carList.appendChild(li);
     });
 }
