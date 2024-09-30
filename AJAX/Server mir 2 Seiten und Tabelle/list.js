@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     autos.forEach(function (auto, index) {
         let li = document.createElement("li");
+        li.setAttribute('car_index', auto.id)
 
 
         let checkbox = document.createElement("input");
@@ -44,11 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function deleteCars() {
     const checkedItems = document.querySelectorAll('#carList li.checked');
-    checkedItems.forEach(item => item.remove());
+    var list = []
+    checkedItems.forEach(item => {
+        list.push(item.getAttribute('car_index'));
+        item.remove()
+    });
 
-    autos = autos.filter((auto, index) => !document.querySelectorAll('#carList li')[index].classList.contains('checked'));
-
+    autos = autos.filter((auto,index)=>!list.includes(""+auto.id))
+    console.log(autos)
     localStorage.setItem('autos', JSON.stringify(autos));
+    countChecked = 0
 }
 
 function downloadCSV() {
@@ -64,6 +70,12 @@ function downloadCSV() {
     document.body.removeChild(link);
 }
 
+
+
+function renderCar(aCar){
+
+}
+
 function goBack() {
-    window.history.back()
+    window.open("/", this)
 }

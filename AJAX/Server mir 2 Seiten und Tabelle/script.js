@@ -25,7 +25,7 @@ function saveAuto() {
     const transmission = document.getElementById('transmission').value;
 
     if (marke && baujahr && farbe && transmission) {
-        const auto = { Marke: marke, Baujahr: baujahr, Farbe: farbe, Transmission: transmission };
+        const auto = { Marke: marke, Baujahr: baujahr, Farbe: farbe, Transmission: transmission, id:Math.random() };
 
         if (editingIndex !== null) {
             autos[editingIndex] = auto;
