@@ -25,7 +25,13 @@ function saveAuto() {
     const transmission = document.getElementById('transmission').value;
 
     if (marke && baujahr && farbe && transmission) {
-        const auto = { Marke: marke, Baujahr: baujahr, Farbe: farbe, Transmission: transmission, id:Math.random() };
+        const auto = { 
+            Marke: marke, 
+            Baujahr: baujahr, 
+            Farbe: farbe, 
+            Transmission: transmission, 
+            id:Math.random() 
+        };
 
         if (editingIndex !== null) {
             autos[editingIndex] = auto;
@@ -55,8 +61,12 @@ function renderAutoTable() {
             <td>${auto.Farbe}</td>
             <td>${auto.Transmission}</td>
             <td>
-                <button onclick="editAuto(${index})">Ändern</button>
-                <button onclick="deleteAuto(${index})">Löschen</button>
+                <button onclick="editAuto(${index})">
+                    <span class="iconify" data-icon="iconamoon:edit-light"></span>
+                </button>
+                <button onclick="deleteAuto(${index})">
+                    <span class="iconify" data-icon="bi:trash"></span>
+                </button>
             </td>
         `;
         tableBody.appendChild(row);

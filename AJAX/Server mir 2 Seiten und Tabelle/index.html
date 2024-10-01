@@ -16,6 +16,15 @@
             font-size: 16px;
         }
 
+        select {
+            margin: 7px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+
         input {
             border: 2px solid #007bff;
             border-radius: 5px;
@@ -62,6 +71,52 @@
         .delete-all:hover {
             background-color: #c82333;
         }
+
+        .custom-select {
+                    
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            background-color: white;
+            color: #333;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .select-container {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+        }
+
+        .select-container::after {
+            content: '▼';
+            font-size: 12px;
+            color: #333;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .custom-select:hover, .custom-select:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .custom-select option {
+            padding: 10px;
+            font-size: 16px;
+            color: black;
+        }
+
     </style>
 </head>
 <body>
@@ -70,12 +125,28 @@
     <form id="autoForm">
         <input type="text" id="marke" placeholder="Marke">
         <input type="number" id="baujahr" placeholder="Baujahr">
-        <input type="text" id="farbe" placeholder="Farbe">
-        <input type="text" id="transmission" placeholder="Transmission">
+
+        <select id="transmission">
+            <option value="Transmission wählen">Transmission wählen</option>
+            <option value="Automatikgetriebe">Automatikgetriebe</option>
+            <option value="Schaltgetriebe">Schaltgetriebe</option>
+            <option value="Typ-Tronic">Typ-Tronic</option>
+        </select>
+
+        <select id="farbe">
+            <option value="">Farbe wählen</option>
+            <option value="Rot">Rot</option>
+            <option value="Blau">Blau</option>
+            <option value="Grün">Grün</option>
+            <option value="Gelb">Gelb</option>
+            <option value="Schwarz">Schwarz</option>
+        </select>
+
+        <!-- <input type="text" id="transmission" placeholder="Transmission"> -->
         <button type="button" id="saveButton">Speichern</button>
         <button type="button" id="resetButton">Reinigen</button>
     </form>
-
+    
     <table id="autoTable">
         <thead>
             <tr>
@@ -95,5 +166,7 @@
     <button type="button" onclick="window.location.href='list.html'">Liste zeigen</button>
     
     <script src="script.js"></script>
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+    
 </body>
 </html>
