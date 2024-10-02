@@ -1,0 +1,14 @@
+[
+    {
+        "Marke": "x",
+        "Farbe": "blau",
+        "Baujahr": 2020
+    },
+{
+        "Marke": "x",
+        "Farbe": "blau",
+        "Baujahr": 2020,
+	"Transmission": "Automatik"
+    }
+
+]
