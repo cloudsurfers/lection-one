@@ -1,11 +1,12 @@
 let autos = [];
-let editingIndex = null;
+let editngIndex = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     loadAutos();
     renderAutoTable();
 
     document.getElementById('saveButton').addEventListener('click', saveAuto);
+    document.getElementById('marke').addEventListener( 'focusout', onFocus);
     document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
     document.getElementById('resetButton').addEventListener('click', resetForm);
 });
@@ -18,13 +19,26 @@ function saveAutos() {
     localStorage.setItem('autos', JSON.stringify(autos));
 }
 
+function validateAndMark(value, element){
+   if (value!=null && value!=""){
+	   element.style=""
+	   return true
+   }
+   element.style="background-color:red"
+   return false;
+}
+
+function onFocus(event){
+	console.log("focues event: "+event)
+}
+
 function saveAuto() {
     const marke = document.getElementById('marke').value;
     const baujahr = document.getElementById('baujahr').value;
     const farbe = document.getElementById('farbe').value;
     const transmission = document.getElementById('transmission').value;
 
-    if (marke && baujahr && farbe && transmission) {
+    if (validateAndMark(marke, document.getElementById('marke')) && baujahr && farbe && transmission) {
         const auto = { 
             Marke: marke, 
             Baujahr: baujahr, 
