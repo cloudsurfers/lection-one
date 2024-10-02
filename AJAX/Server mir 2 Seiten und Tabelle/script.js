@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('saveButton').addEventListener('click', saveAuto);
     document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
     document.getElementById('resetButton').addEventListener('click', resetForm);
+    document.getElementById('upload').addEventListener('change', uploadFile, false);
+    
 });
 
 function loadAutos() {
@@ -112,4 +114,21 @@ function downloadCSV() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+function uploadFile(event){
+    var file = event.target.files[0];
+    if (!file) {
+      console.log("not a file")
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var contents = e.target.result;
+      localStorage.setItem('autos', contents);
+      loadAutos();
+      renderAutoTable();
+
+    };
+    reader.readAsText(file);
 }
