@@ -14,6 +14,26 @@
             margin: 7px 0;
             padding: 10px;
             font-size: 16px;
+            border-radius: 5px;
+        }
+
+        #upload, #CSVupload {
+            display: none;
+        }
+
+        .upload-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-label:hover {
+            background-color: #0056b3;
         }
 
         select {
@@ -73,7 +93,6 @@
         }
 
         .custom-select {
-                    
             width: 100%;
             padding: 10px;
             font-size: 16px;
@@ -130,7 +149,7 @@
             <option value="">Transmission wählen</option>
             <option value="Automatikgetriebe">Automatikgetriebe</option>
             <option value="Schaltgetriebe">Schaltgetriebe</option>
-            <option value="Typ-Tronic">Typ-Tronic</option>
+            <option value="Typ-Tronic">Tiptronic</option>
         </select>
 
         <select id="farbe">
@@ -142,10 +161,8 @@
             <option value="Schwarz">Schwarz</option>
         </select>
 
-        <!-- <input type="text" id="transmission" placeholder="Transmission"> -->
         <button type="button" id="saveButton">Speichern</button>
         <button type="button" id="resetButton">Reinigen</button>
-        
     </form>
     
     <table id="autoTable">
@@ -163,9 +180,13 @@
     </table>
 
     <button class="delete-all" id="deleteAllButton" onclick="deleteAllCars()">Lösche alle Autos</button>
-    <button id="downloadCsvBtn">CSV File herunterladen</button>
+    <button id="downloadCsvBtn">JSON/CSV File herunterladen</button>
     <button type="button" onclick="window.location.href='list.html'">Liste zeigen</button>
-    <input type="file" id="upload" ></input>
+
+    <!-- CSV -->
+        <input type="file" id="upload">
+    <label for="upload" class="upload-label">Wählen JSON/CSV File</label>
+
     <script src="script.js"></script>
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
     

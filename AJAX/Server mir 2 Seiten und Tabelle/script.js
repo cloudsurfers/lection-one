@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
     document.getElementById('resetButton').addEventListener('click', resetForm);
     document.getElementById('upload').addEventListener('change', uploadFile, false);
+    document.getElementById('CSVupload').addEventListener('change', uploadCSVFile, false)
     
 });
 
@@ -49,9 +50,9 @@ function saveAuto() {
             id:Math.random() 
         };
 
-        if (editingIndex !== null) {
-            autos[editingIndex] = auto;
-            editingIndex = null;
+        if (editngIndex !== null) {
+            autos[editngIndex] = auto;
+            editngIndex = null;
         } else {
             autos.push(auto);
         }
@@ -114,7 +115,7 @@ function deleteAllCars() {
 
 function resetForm() {
     document.getElementById('autoForm').reset();
-    editingIndex = null;
+    editngIndex = null;
 }
 
 function downloadCSV() {
@@ -130,19 +131,56 @@ function downloadCSV() {
     document.body.removeChild(link);
 }
 
-function uploadFile(event){
-    var file = event.target.files[0];
-    if (!file) {
-      console.log("not a file")
-      return;
-    }
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      var contents = e.target.result;
-      localStorage.setItem('autos', contents);
-      loadAutos();
-      renderAutoTable();
+document.getElementById('upload').addEventListener('change', handleFileUpload, false);
+document.getElementById('CSVupload').addEventListener('change', handleFileUpload, false);
 
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (!file) {
+        alert("Bitte wählen Sie eine Datei aus.");
+        return;
+    }
+
+    const fileExtension = file.name.split('.').pop().toLowerCase(); 
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const contents = e.target.result;
+
+        if (fileExtension === 'json') {
+
+            try {
+                autos = JSON.parse(contents); 
+                saveAutos();
+                renderAutoTable();
+            } catch (error) {
+                alert("Fehler.");
+                console.error("JSON parse error:", error);
+            }
+
+        } else if (fileExtension === 'csv') {
+            const lines = contents.split("\n"); 
+            autos = []; 
+            for (let i = 1; i < lines.length; i++) {
+                const data = lines[i].split(","); 
+                if (data.length === 4) { 
+                    const auto = {
+                        Marke: data[0].trim(),
+                        Baujahr: data[1].trim(),
+                        Farbe: data[2].trim(),
+                        Transmission: data[3].trim()
+                    };
+                    autos.push(auto); 
+                }
+            }
+
+            saveAutos();
+            renderAutoTable();
+        } else {
+            alert("Nicht unterstütztes Dateiformat. Bitte laden Sie eine JSON- oder CSV-Datei hoch.");
+        }
+
+        event.target.value = '';
     };
-    reader.readAsText(file);
+
+    reader.readAsText(file); 
 }

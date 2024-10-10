@@ -2,7 +2,8 @@
     {
         "Marke": "x",
         "Farbe": "blau",
-        "Baujahr": 2020
+        "Baujahr": 2020,
+    "Transmission": "Automatik"
     },
 {
         "Marke": "x",
