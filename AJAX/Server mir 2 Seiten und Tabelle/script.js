@@ -9,9 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('marke').addEventListener( 'focusout', onFocus);
     document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
     document.getElementById('resetButton').addEventListener('click', resetForm);
-    document.getElementById('upload').addEventListener('change', uploadFile, false);
-    document.getElementById('CSVupload').addEventListener('change', uploadCSVFile, false)
-    
 });
 
 function loadAutos() {
@@ -98,7 +95,7 @@ function editAuto(index) {
     document.getElementById('farbe').value = auto.Farbe;
     document.getElementById('transmission').value = auto.Transmission;
 
-    editingIndex = index;
+    editngIndex = index;
 }
 
 function deleteAuto(index) {
@@ -132,7 +129,6 @@ function downloadCSV() {
 }
 
 document.getElementById('upload').addEventListener('change', handleFileUpload, false);
-document.getElementById('CSVupload').addEventListener('change', handleFileUpload, false);
 
 function handleFileUpload(event) {
     const file = event.target.files[0];
