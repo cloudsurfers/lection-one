@@ -1,15 +1,46 @@
 let autos = [];
 let editngIndex = null;
+let farbeliste = []
 
 document.addEventListener("DOMContentLoaded", () => {
+    
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString)
+    let country = urlParams.get('country')
+    if (country == undefined){
+        country = "en"
+    }
+    ladeFarbenList(country)
     loadAutos();
-    renderAutoTable();
+    renderAutoTable(country);
 
     document.getElementById('saveButton').addEventListener('click', saveAuto);
     document.getElementById('marke').addEventListener( 'focusout', onFocus);
     document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
     document.getElementById('resetButton').addEventListener('click', resetForm);
+    
 });
+
+function ladeFarbenList(country){
+    const xhttp = new XMLHttpRequest();
+   
+
+    xhttp.open("GET", "farbe.json", false);
+    xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
+    xhttp.send(null);
+    if (xhttp.status === 200){
+        farbeliste = JSON.parse(xhttp.responseText)
+        let optionList = document.getElementById("farbe")
+        optionList.replaceChildren()
+        farbeliste.forEach(farbe => {
+            let opt = document.createElement("option")
+            opt.setAttribute("value", farbe.id)
+
+            opt.textContent = farbe[country]
+            optionList.appendChild(opt)
+        })
+    }
+}
 
 function loadAutos() {
     autos = JSON.parse(localStorage.getItem('autos')) || [];
@@ -62,17 +93,26 @@ function saveAuto() {
     }
 }
 
-function renderAutoTable() {
+function renderAutoTable(country) {
     const tableBody = document.querySelector('#autoTable tbody');
     tableBody.innerHTML = '';
 
     autos.forEach((auto, index) => {
         const row = document.createElement('tr');
+        var autoFarbe = "not found"
+        console.log("hier ist die farbenliste leeehr "+farbeliste)
+        farbeliste.forEach(f => {
+            console.log(f)
+            if (f.id === auto.Farbe){
+                autoFarbe = f[country]
+                console.log(autoFarbe)
+            }
+        })
         row.innerHTML = `
             <td>${index + 1}</td>
             <td>${auto.Marke}</td>
             <td>${auto.Baujahr}</td>
-            <td>${auto.Farbe}</td>
+            <td>${autoFarbe}</td>
             <td>${auto.Transmission}</td>
             <td>
                 <button onclick="editAuto(${index})">
