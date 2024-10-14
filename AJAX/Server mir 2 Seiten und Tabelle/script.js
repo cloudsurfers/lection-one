@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function ladeFarbenList(country){
     const xhttp = new XMLHttpRequest();
-   
-
     xhttp.open("GET", "farbe.json", false);
     xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xhttp.send(null);
