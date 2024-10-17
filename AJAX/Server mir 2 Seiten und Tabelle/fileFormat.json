@@ -1,0 +1,4 @@
+[
+    { "format": "CSV", "description": "Herunterladen in CSV format"},
+    { "format": "JSON", "description": "Herunterladen in JSON format"}
+]

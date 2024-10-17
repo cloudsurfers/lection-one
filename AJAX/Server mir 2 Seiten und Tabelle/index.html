@@ -136,10 +136,29 @@
             color: black;
         }
 
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Auto Liste</h1>
+    <div class="header-container">
+        <h1>Auto Liste</h1>
+        <div class="header-buttons">
+            <button type="languageEn" id="btn1">Eng</button>
+            <button type="LaunguageDe" id="btn2">Deu</button>
+        </div>
+    </div>
+
+
 
     <form id="autoForm">
         <input type="text" id="marke" placeholder="Marke">
@@ -161,8 +180,13 @@
             <option value="Schwarz">Schwarz</option>
         </select>
 
-        <button type="button" id="saveButton">Speichern</button>
-        <button type="button" id="resetButton">Reinigen</button>
+        <button type="button" id="saveButton">
+            <span class="iconify" data-icon="dashicons:insert"></span>
+        </button>
+        
+        <button type="button" id="resetButton">
+            <span class="iconify" data-icon="carbon:clean"></span>
+        </button>
     </form>
     
     <table id="autoTable">
@@ -179,16 +203,43 @@
         <tbody></tbody>
     </table>
 
-    <button class="delete-all" id="deleteAllButton" onclick="deleteAllCars()">Lösche alle Autos</button>
-    <button id="downloadCsvBtn">JSON/CSV File herunterladen</button>
-    <button type="button" onclick="window.location.href='list.html'">Liste zeigen</button>
+    <button class="delete-all" id="deleteAllButton" onclick="deleteAllCars()">
+        <span class="iconify" data-icon="bi:trash"></span>
+    </button>
+    <button type="button" onclick="window.location.href='list.html'">
+        <span class="iconify" data-icon="material-symbols:table-eye"></span>
+    </button>
 
-    <!-- CSV/JSON -->
     <input type="file" id="upload">
-    <label for="upload" class="upload-label">Wählen JSON/CSV File</label>
+    <label for="upload" class="upload-label">Wählen File</label>
+
+    <!-- <select id="fileUpload">
+        <option value="">File in Format Suchen</option>
+        <option value="CSV">CSV</option>
+        <option value="JSON">JSON</option>
+    </select>
+    <button id="searchBtn">
+        <span class="iconify" data-icon="material-symbols:search"></span>
+        
+    </button> -->
+    
+
+    <!-- <button id="downloadCsvBtn">File in Format herunterladen:</button> -->
+
+
+    <select id="fileFormat">
+        <option value="">File in Format herunterladen</option>
+        <option value="CSV">CSV</option>
+        <option value="JSON">JSON</option>
+    </select>
+    <button id="downloadBtn">
+        <span class="iconify" data-icon="material-symbols:download"></span>
+    </button>
+
 
     <script src="script.js"></script>
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
     
 </body>
 </html>
+

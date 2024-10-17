@@ -4,8 +4,8 @@ let farbeliste = []
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString)
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString)
     let country = urlParams.get('country')
     if (country == undefined){
         country = "en"
@@ -16,7 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById('saveButton').addEventListener('click', saveAuto);
     document.getElementById('marke').addEventListener( 'focusout', onFocus);
-    document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
+    // document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+        const selectedFormat = document.getElementById('fileFormat').value;
+    
+        if (selectedFormat === 'CSV') {
+            downloadCSV();
+        } else if (selectedFormat === 'JSON') {
+            downloadJSON()
+        } else {
+            alert("Bitte wählen Sie eun Format aaus.")
+        }
+    });
     document.getElementById('resetButton').addEventListener('click', resetForm);
     
 });
@@ -161,6 +172,16 @@ function downloadCSV() {
     const link = document.createElement('a');
     link.setAttribute('href', encodeURI(csvContent));
     link.setAttribute('download', 'autos.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function downloadJSON() {
+    const jsonContent = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(autos, null, 2));
+    const link = document.createElement('a');
+    link.setAttribute('href', jsonContent);
+    link.setAttribute('download', 'autos.json');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
