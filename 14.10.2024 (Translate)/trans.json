@@ -1,0 +1,20 @@
+[{  "id": "1",
+  "de": "Transmission wählen",
+  "en": "Select transmission",
+  "fr": "Sélectionnez la transmission"}, 
+  {
+    "id": "2",
+  "de": "Automatikgetriebe",
+  "en": "automatic transmission",
+  "fr": "transmission automatique"},
+  {
+    "id": "3",
+  "de": "Schaltgetriebe",
+  "en": "Manual transmission",
+  "fr": "Transmission manuelle"},
+  {
+    "id": "4",
+    "de": "Tiptronic",
+    "en": "Tiptronic",
+    "fr": "Tiptronique"
+  }]

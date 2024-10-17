@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="list.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Liste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        li {
+            background-color: #f4f4f4;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        li.checked {
+            text-decoration: line-through;
+            color: #ccc;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-all {
+            margin-top: 30px;
+            background-color: #dc3545;
+        }
+
+        .delete-all:hover {
+            background-color: #c82333;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Auto list</h1>
+    <ul id="carList"></ul>
+    <button class="delete-all" id="deleteAllButton" onclick="deleteCars()">
+        <span class="iconify" data-icon="bi:trash"></span>
+    </button>
+    <button id="downloadCsvBtn">CSV File herunterladen</button>
+    
+    <!-- <a href="index.html">zurück zu Maske</a> -->
+
+    <button href="index.html" id="zurErsteSeite">
+        <span class="iconify" data-icon="lets-icons:back"></span>
+    </button>
+
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+</body>
+</html>

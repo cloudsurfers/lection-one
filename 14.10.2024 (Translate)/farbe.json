@@ -1,0 +1,21 @@
+[{"id": "1",
+  "de": "weiß",
+  "en": "white",
+  "fr": "blanc"}, 
+  {
+    "id": "2",
+  "de": "schwarz",
+  "en": "black",
+  "fr": "noir"},
+  {
+    "id": "3",
+  "de": "rot",
+  "en": "red",
+  "fr": "rouge"},
+  {
+    "id": "4",
+  "de": "grau",
+  "en": "grey",
+  "fr": "grise"
+  }
+]

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Liste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        input, button {
+            margin: 7px 0;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        #upload, #CSVupload {
+            display: none;
+        }
+
+        .upload-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-label:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            margin: 7px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+
+        input {
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        input::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .delete-all {
+            margin-top: 30px;
+            background-color: #dc3545;
+        }
+
+        .delete-all:hover {
+            background-color: #c82333;
+        }
+
+        .custom-select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            background-color: white;
+            color: #333;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .select-container {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+        }
+
+        .select-container::after {
+            content: '▼';
+            font-size: 12px;
+            color: #333;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .custom-select:hover, .custom-select:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .custom-select option {
+            padding: 10px;
+            font-size: 16px;
+            color: black;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>Auto Liste</h1>
+        <div class="header-buttons">
+            <button type="languageEng" id="btnEng">Eng</button>
+            <button type="LaunguageDeu" id="btnDeu">Deu</button>
+        </div>
+    </div>
+
+    <form id="autoForm">
+        <input type="text" id="marke" placeholder="Marke">
+        <input type="number" id="baujahr" placeholder="Baujahr">
+
+        <select id="transmissionDe">
+            <option value="">Transmission wählen</option>
+            <option value="Automatikgetriebe">Automatikgetriebe</option>
+            <option value="Schaltgetriebe">Schaltgetriebe</option>
+            <option value="Typ-Tronic">Tiptronic</option>
+        </select>
+
+        <select id="farbe">
+            <option value="">Farbe wählen</option>
+            <option value="Rot">Rot</option>
+            <option value="Blau">Blau</option>
+            <option value="Grün">Grün</option>
+            <option value="Gelb">Gelb</option>
+            <option value="Schwarz">Schwarz</option>
+        </select>
+
+        <button type="button" id="saveButton">
+            <span class="iconify" data-icon="dashicons:insert"></span>
+        </button>
+        
+        <button type="button" id="resetButton">
+            <span class="iconify" data-icon="carbon:clean"></span>
+        </button>
+    </form>
+    
+    <table id="autoTable">
+        <thead>
+            <tr>
+                <th id="id">ID</th>
+                <th id="marke">Marke</th>
+                <th id="baujahr">Baujahr</th>
+                <th id="farbe">Farbe</th>
+                <th id="transmission">Transmission</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button class="delete-all" id="deleteAllButton" onclick="deleteAllCars()">
+        <span class="iconify" data-icon="bi:trash"></span>
+    </button>
+    <button type="button" onclick="window.location.href='list.html'">
+        <span class="iconify" data-icon="material-symbols:table-eye"></span>
+    </button>
+
+    <input type="file" id="upload">
+    <label for="upload" class="upload-label">Wählen File</label>
+
+    <select id="fileFormat">
+        <option value="">File in Format laden</option>
+        <option value="CSV">CSV</option>
+        <option value="JSON">JSON</option>
+    </select>
+    <button id="downloadBtn">
+        <span class="iconify" data-icon="material-symbols:download"></span>
+    </button>
+
+    <script src="script.js"></script>
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+    <script src="transmission.json"></script>
+    
+</body>
+</html>

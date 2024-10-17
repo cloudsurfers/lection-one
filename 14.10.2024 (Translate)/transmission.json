@@ -1,0 +1,16 @@
+[
+  {
+    "De": {
+      "type": "Transmission wählen",
+      "type1": "Automatikgetriebe",
+      "type2": "Schaltgetriebe",
+      "type3": "Tiptronic"
+    }},
+    {
+    "En": {
+      "type": "Select transmission",
+      "type1": "Automatic",
+      "type2": "Manual",
+      "type3": "Tiptronic"
+    }}
+  ]
