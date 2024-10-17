@@ -1,4 +1,5 @@
 function ladeOptionenList(country, url, elementId) {
+    console.log("loading ${country}")
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", url, false);
     xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");

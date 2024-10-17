@@ -178,7 +178,7 @@
             <option value="Schwarz">Schwarz</option>
         </select>
 
-        <button type="button" id="saveButton">
+        <button type="button" id="saveButton"  alt="Neues Auto anlegen">
             <span class="iconify" data-icon="dashicons:insert"></span>
         </button>
         
@@ -190,11 +190,11 @@
     <table id="autoTable">
         <thead>
             <tr>
-                <th id="id">ID</th>
-                <th id="marke">Marke</th>
-                <th id="baujahr">Baujahr</th>
-                <th id="farbe">Farbe</th>
-                <th id="transmission">Transmission</th>
+                <th id="tid">ID</th>
+                <th id="tmarke">Marke</th>
+                <th id="tbaujahr">Baujahr</th>
+                <th id="tfarbe">Farbe</th>
+                <th id="ttransmission">Transmission</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -205,10 +205,10 @@
     </button>
     <button type="button" onclick="window.location.href='list.html'">
         <span class="iconify" data-icon="material-symbols:table-eye"></span>
-    </button>
+    </button>   
 
     <input type="file" id="upload">
-    <label for="upload" class="upload-label">Wählen File</label>
+    <label for="upload" class="upload-label" id="upload-button">Wählen File</label>
 
     <select id="fileFormat">
         <option value="">File in Format laden</option>
@@ -221,7 +221,7 @@
 
     <script src="script.js"></script>
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
-    <script src="transmission.json"></script>
+    <!--script src="transmission.json"></script-->
     
 </body>
 </html>

@@ -6,20 +6,25 @@ document.addEventListener("DOMContentLoaded", () => {
     
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString)
-    let country = urlParams.get('country')
-    if (country == undefined){
-        country = "en"
-    }
-    ladeFarbenList(country)
+    let country = urlParams.get('country') || 'en';
+    let farbenI18n = loadData("farbe.json")
+    ladeOptionenList(country, farbenI18n, 'farbe');
+    let transmissionI18n = loadData('trans.json');
+    ladeOptionenList(country, transmissionI18n, 'transmissionDe');
+
+    let i18n = loadData('i18n.json');
+    translateUploadButton(i18n, country)
+    renderAutoTableHeader(i18n, country)
     loadAutos();
-    renderAutoTable(country);
+    renderAutoTableContent(country);
 
     //transmission
-
+    console.log("adding eventlistener to buttons")
     document.getElementById('saveButton').addEventListener('click', saveAuto);
     document.getElementById('marke').addEventListener( 'focusout', onFocus);
     // document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
     document.getElementById('downloadBtn').addEventListener('click', function() {
+        console.log("downloadBtn clicked")
         const selectedFormat = document.getElementById('fileFormat').value;
     
         if (selectedFormat === 'CSV') {
@@ -31,9 +36,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     document.getElementById('resetButton').addEventListener('click', resetForm);
-    
 });
 
+function translateUploadButton(i18n, country){
+    document.getElementById("upload-button").textContent = i18n["upload-button"][country]
+}
+
+function renderAutoTableHeader(autoTableHeader18n, country){
+    document.getElementById("tid").textContent = autoTableHeader18n["id"][country]
+    document.getElementById("tmarke").textContent = autoTableHeader18n["marke"][country]
+    document.getElementById("tfarbe").textContent = autoTableHeader18n["farbe"][country]
+    document.getElementById("tbaujahr").textContent = autoTableHeader18n["baujahr"][country]
+    document.getElementById("ttransmission").textContent = autoTableHeader18n["Transmission"][country]
+}
+
+function loadData(fileName){
+    console.log("loading file "+fileName)
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", fileName, false);
+    xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
+    xhttp.send(null);
+    if (xhttp.status === 200) {
+        return JSON.parse(xhttp.responseText);
+    }else{
+        console.log("could no download file "+fileName)
+        throw Error("failed to load data from file "+fileName)
+    }
+}
+
+function ladeOptionenList(country, data, elementId) {
+    let optionElement = document.getElementById(elementId);
+    optionElement.replaceChildren();
+    data.forEach(option => {
+        let opt = document.createElement("option");
+        opt.setAttribute("value", option.id);
+        opt.textContent = option[country];
+        optionElement.appendChild(opt);
+    });
+}
 
 
 function ladeFarbenList(country){
@@ -125,14 +165,14 @@ function saveAuto() {
     }
 }
 
-function renderAutoTable(country) {
+function renderAutoTableContent(country) {
     const tableBody = document.querySelector('#autoTable tbody');
     tableBody.innerHTML = '';
 
     autos.forEach((auto, index) => {
         const row = document.createElement('tr');
         var autoFarbe = "not found"
-        console.log("hier ist die farbenliste leeehr "+farbeliste)
+        //console.log("hier ist die farbenliste leeehr "+farbeliste)
         farbeliste.forEach(f => {
             console.log(f)
             if (f.id === auto.Farbe){
@@ -259,7 +299,6 @@ function handleFileUpload(event) {
 
         event.target.value = '';
     };
-
     reader.readAsText(file); 
 }
 
