@@ -1,0 +1,17 @@
+[
+  {"id": "1",
+    "de": "File in Format laden",
+    "en": "Load file in format",
+    "fr": "Charger le fichier au format"
+  },
+  {"id": "2",
+    "de": "CSV",
+    "en": "CSV",
+    "fr": "CSV"
+  },
+  {"id": "3",
+    "de": "JSON",
+    "en": "JSON",
+    "fr": "JSON"
+  }
+]

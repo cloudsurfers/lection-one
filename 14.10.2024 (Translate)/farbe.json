@@ -1,4 +1,9 @@
-[{"id": "1",
+[ {"id": "",
+  "de": "Farbe wählen",
+  "en": "Choose color",
+  "fr": "Choisissez la couleur"},
+  {
+    "id": "1",
   "de": "weiß",
   "en": "white",
   "fr": "blanc"}, 
