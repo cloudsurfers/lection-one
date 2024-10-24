@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ladeOptionenList(country, farbenI18n, 'farbe');
     let transmissionI18n = loadData('trans.json');
     ladeOptionenList(country, transmissionI18n, 'transmissionDe');
+    let fileFormatI18n = loadData("fileFormat.json")
+    ladeOptionenList(country, fileFormatI18n, 'fileFormat');
+    // let PlaceHolBaujahr = loadData("PlaceHolBaujahr.json")
+    // ladeOptionenList(country, fileFormatI18n, 'PlaceHolBaujahr')
+    // let PlaceHolMarke = loadData ("PlaceHolMarke")
+    // ladeOptionenList(country, fileFormatI18n, 'PlaceHolMarke')
+
 
     let i18n = loadData('i18n.json');
     translateUploadButton(i18n, country)
@@ -48,7 +55,26 @@ function renderAutoTableHeader(autoTableHeader18n, country){
     document.getElementById("tfarbe").textContent = autoTableHeader18n["farbe"][country]
     document.getElementById("tbaujahr").textContent = autoTableHeader18n["baujahr"][country]
     document.getElementById("ttransmission").textContent = autoTableHeader18n["Transmission"][country]
+    console.log("bin ich hier")
+    // document.getElementById("tList").textContent = autoTableHeader18n["List"][country]
+    document.getElementById("tfileFormat").textContent = autoTableHeader18n["fileFormat"][country]
+    // document.getElementById("tPlaceHolBaujahr").textContent = autoTableHeader18n["PlaceHolBaujahr"][country]
+    // document.getElementById("tPlaceHolMarke").textContent = autoTableHeader18n["PlaceHolMarke"][country]
 }
+
+// function renderPlaceholder(autoTableHeader18n, country){
+//     document.getElementById("tPlaceHolBaujahr").textContent = autoTableHeader18n["PlaceHolBaujahr"][country]
+//     document.getElementById("tPlaceHolMarke").textContent = autoTableHeader18n["PlaceHolMarke"][country]
+// }
+
+// function updatePlaceholders(PlaceHolBaujahr, PlaceHolMarke, country){
+//     const PlaceHolBaujahr = document.getElementById("PlaceHolBaujahr")
+//     const PlaceHolMarke = document.getElementById("PlaceHolMarke")
+
+//     PlaceHolBaujahr.placeholder = PlaceHolBaujahr.[country]
+//     PlaceHolMarke.placeholder = PlaceHolMarke.[country]
+// }
+
 
 function loadData(fileName){
     console.log("loading file "+fileName)
@@ -74,7 +100,6 @@ function ladeOptionenList(country, data, elementId) {
         optionElement.appendChild(opt);
     });
 }
-
 
 function ladeFarbenList(country){
     const xhttp = new XMLHttpRequest();
