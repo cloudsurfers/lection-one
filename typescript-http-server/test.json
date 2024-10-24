@@ -10,6 +10,12 @@
         "Farbe": "blau",
         "Baujahr": 2020,
 	"Transmission": "Automatik"
+    },
+    {
+        "Marke": "y",
+        "Farbe": "schwarz",
+        "Baujahr": 2010,
+	"Transmission": "Manuel"
     }
 
 ]

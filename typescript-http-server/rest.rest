@@ -1,0 +1,11 @@
+GET http://localhost:4200/autos
+###
+POST http://localhost:4200/auto  HTTP/1.1
+content-type: application/json
+
+{ 
+    "Marke": "y2",
+    "Farbe": "schwarz",
+    "Baujahr": 2011,
+    "Transmission": "Manuel"
+}
