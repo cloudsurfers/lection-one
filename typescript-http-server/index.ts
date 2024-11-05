@@ -9,11 +9,18 @@ const  server = http.createServer((req, res) =>{
 	if (req.method == "POST" && req.url == "/auto"){
 		handleAddCar(req, res)
 	}
-	
 	//if (req.method)
 	//res.write('hallo ts welt '+req.url)
 	//res.end()
-});
+	fs.readFile('index.html', (err, data) => { 
+		if (err) {
+		  res.writeHead(500);
+		  res.end("Fehler mit index.html");
+		  return
+		}
+		res.writeHead(200, {'Content-Type': 'text/html'}); 
+		res.end(data) 
+})})
 
 server.listen(4200, ()=>{
 	console.log("server started")
@@ -49,3 +56,5 @@ function loadCarList(res:http.ServerResponse){
 }
 
 //server.close()
+
+// Quelle wo ich information gefunden habe: https://sky.pro/wiki/html/zagruzka-i-otobrazhenie-html-faylov-v-node-js-bez-koda-html/
