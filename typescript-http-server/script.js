@@ -120,6 +120,8 @@ function ladeFarbenList(country){
     }
 }
 
+
+
 function ladeFarbenList(country){
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", "trans.json", false);
@@ -327,3 +329,22 @@ function handleFileUpload(event) {
     reader.readAsText(file); 
 }
 
+module.exports = {
+    renderAutoTableHeader,
+    loadData,
+    ladeOptionenList,
+    ladeFarbenList,
+    loadAutos,
+    saveAutos,
+    validateAndMark,
+    onFocus,
+    saveAuto,
+    renderAutoTableContent,
+    editAuto,
+    deleteAuto,
+    deleteAllCars,
+    resetForm,
+    downloadCSV,
+    downloadJSON,
+    loadAutos,
+};

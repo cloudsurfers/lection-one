@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //transmission
     console.log("adding eventlistener to buttons")
     document.getElementById('saveButton').addEventListener('click', saveAuto);
-    document.getElementById('marke').addEventListener( 'focusout', onFocus);
+    // document.getElementById('marke').addEventListener( 'focusout', onFocus);
     // document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
     document.getElementById('downloadBtn').addEventListener('click', function() {
         console.log("downloadBtn clicked")
@@ -57,7 +57,7 @@ function renderAutoTableHeader(autoTableHeader18n, country){
     document.getElementById("ttransmission").textContent = autoTableHeader18n["Transmission"][country]
     console.log("bin ich hier")
     // document.getElementById("tList").textContent = autoTableHeader18n["List"][country]
-    document.getElementById("tfileFormat").textContent = autoTableHeader18n["fileFormat"][country]
+        // document.getElementById("tfileFormat").textContent = autoTableHeader18n["fileFormat"][country]
     // document.getElementById("tPlaceHolBaujahr").textContent = autoTableHeader18n["PlaceHolBaujahr"][country]
     // document.getElementById("tPlaceHolMarke").textContent = autoTableHeader18n["PlaceHolMarke"][country]
 }

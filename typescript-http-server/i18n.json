@@ -1,0 +1,32 @@
+{
+  "upload-button": {
+    "de": "Datei hochladen",
+    "en": "File upload",
+    "fr": "Téléchargement de fichiers"
+  },
+  "id":{
+    "de": "ID",
+    "en": "id",
+    "fr": "id"
+  },
+  "baujahr":{
+    "de": "Baujahr",
+    "en": "Year",
+    "fr": "Année de construction"
+  },
+  "marke":{
+    "de": "Marke",
+    "en": "Brand",
+    "fr": "Marque"
+  },
+  "farbe":{
+    "de": "Farbe",
+    "en": "Color",
+    "fr": "Couleur"
+  },
+  "Transmission":{
+    "de": "Transmission",
+    "en": "Transmission",
+    "fr": "Transmission"
+  }
+}
